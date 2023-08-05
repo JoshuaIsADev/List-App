@@ -13,5 +13,14 @@ fs.readdir(cwd(), (err, filenames) => {
     // error handling code here
     console.log(err)
   }
-  console.log(filenames)
+
+  for (let filename of filenames) {
+    fs.lstat(filename, (err, stats) => {
+      if (err) {
+        console.log(err)
+      }
+
+      console.log(filename, stats.isFile())
+    })
+  }
 })
